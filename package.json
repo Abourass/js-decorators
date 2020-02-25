@@ -2,11 +2,11 @@
   "name": "caching-and-decorators",
   "version": "1.0.0",
   "description": "",
-  "main": "src/cachingDecorator.js",
+  "main": "dist/cachingDecorator.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Antonio Bourassa",
-  "license": "ISC"
+  "license": "MIT"
 }
