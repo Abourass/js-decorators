@@ -1,5 +1,5 @@
 "use strict";
-function throttle(func, ms) {
+const throttle = (func, ms) => {
     let isThrottled = false, savedArgs, savedThis;
     function wrapper(msg) {
         if (isThrottled) {
@@ -19,7 +19,7 @@ function throttle(func, ms) {
         }, ms);
     }
     return wrapper;
-}
+};
 const log = (msg) => console.log(msg);
 let logOncePerSecond = throttle(log, 1000);
 logOncePerSecond('1'); // shows 1

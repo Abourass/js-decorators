@@ -14,7 +14,6 @@ const spy = <Args extends any[]>(fn: { (...args: Args): any; apply?: any; }) => 
         wrapper.previousCalls.push(args);
         return fn.apply(this, args);
     }
-
     wrapper.previousCalls = [];
     return wrapper;
 };
@@ -24,9 +23,6 @@ worker.sum = spy(worker.sum);
 console.log(worker.sum(1, 2, 3, 4, 5));
 console.log(worker.sum(1, 2, 3, 4, 6));
 
-for (let args of worker.sum.previousCalls){
-    console.log(`Call: ${args.join()}`)
-}
+for (let args of worker.sum.previousCalls){ console.log(`Call: ${args.join()}`)}
 
 export = spy;
-

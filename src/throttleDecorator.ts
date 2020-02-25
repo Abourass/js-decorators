@@ -1,4 +1,4 @@
-function throttle(func: { apply: (arg0: IArguments, arg1: IArguments) => void; }, ms: number) {
+const throttle = (func: { apply: (arg0: IArguments, arg1: IArguments) => void; }, ms: number) => {
     let isThrottled = false, savedArgs: IArguments, savedThis: any;
 
     function wrapper(msg: string) {
@@ -19,7 +19,7 @@ function throttle(func: { apply: (arg0: IArguments, arg1: IArguments) => void; }
         }, ms);
     }
     return wrapper;
-}
+};
 
 const log = (msg: string) => console.log(msg);
 
@@ -30,5 +30,4 @@ logOncePerSecond('2');  // (throttling, 1000ms not out yet)
 logOncePerSecond('3');  // (throttling, 1000ms not out yet)
 
 // when 1000 ms time out -> outputs 3, intermediate value 2 was ignored
-
 export = throttle;
