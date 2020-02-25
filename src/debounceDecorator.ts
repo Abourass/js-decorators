@@ -1,21 +1,19 @@
-function debounce(fn: { (message?: any, ...optionalParams: any[]): void; (message?: any, ...optionalParams: any[]): void; apply?: any; }, minTime: number){
-    let isCooldown = false;
-    return function(msg: string){
-        if (isCooldown){ return; }
-        fn.apply(this, arguments);
-        isCooldown = true;
-        setTimeout(() => isCooldown = false, minTime)
-    }
-}
+const debounce = <Args extends any[], Result extends any>(fn: (...args: Args) => Result, minTime: number) => {
+  let isCooldown = false;
+  return function(...args: Args){
+    if (isCooldown){ return; }
+    fn.apply(this, args);
+    isCooldown = true;
+    setTimeout(() => isCooldown = false, minTime)
+  }
+};
 
-let log = debounce(console.log, 1000);
+const logger = debounce(console.log, 1000);
 
-log('Hi'); // runs immediately
-log('Ignore me!');
+logger('Hi'); // Runs Immediately
+logger('Ignore Me!');
 
-setTimeout(() => log('Ignore me as well!'), 100); // ignored ( only 100 ms passed )
-setTimeout(() => log('Don\'t ignore me!!'), 1100); // Runs because enough time has passed
-setTimeout(() => log('Still ignored!'), 1500); //  ignored (less than 1000 ms from the last run)
-setTimeout(() => log('Good now you get it!!'), 2200); // Runs because enough time has passed
-
-export = debounce;
+setTimeout(() => logger('Ignore me as well!'), 100); // ignored ( only 100 ms passed )
+setTimeout(() => logger('Don\'t ignore me!!'), 1100); // Runs because enough time has passed
+setTimeout(() => logger('Still ignored!'), 1500); //  ignored (less than 1000 ms from the last run)
+setTimeout(() => logger('Good now you get it!!'), 2200); // Runs because enough time has passed

@@ -16,6 +16,5 @@
     "./src/delayingDecorator.ts",
     "./src/spyDecorator.ts",
     "./src/throttleDecorator.ts",
-    "./src/sample.ts"
   ]
 }

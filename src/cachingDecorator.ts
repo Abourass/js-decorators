@@ -10,25 +10,25 @@
 // [].join.call(args)
 
 const worker = {
-    someMethod(){return 1},
-    slow(min: number, max: number){ return min + max + this.someMethod(); },
-    sum(...nums: number[]){
-        let sum = 0;
-        nums.forEach(num => sum += num);
-        return sum;
-    }
+  someMethod(){return 1},
+  slow(min: number, max: number){ return min + max + this.someMethod(); },
+  sum(...nums: number[]){
+    let sum = 0;
+    nums.forEach(num => sum += num);
+    return sum;
+  }
 };
 
-function cache(fn: { (...nums: number[]): number; call?: any; }){
-    let cache = new Map();
-    return function(){
-        let key = optimizedHash(arguments);
-        if (cache.has(key)){return cache.get(key)} // If there's such key in cache read the result from it
-        let result = fn.call(this, ...arguments); // otherwise, call the passed fn
-        cache.set(key, result); // and cache the result
-        return result;
-    }
-}
+const cache = (fn: { (...nums: number[]): number; call?: any; }) => {
+  let cache = new Map();
+  return function(){
+    let key = optimizedHash(arguments);
+    if (cache.has(key)){return cache.get(key)} // If there's such key in cache read the result from it
+    let result = fn.call(this, ...arguments); // otherwise, call the passed fn
+    cache.set(key, result); // and cache the result
+    return result;
+  }
+};
 
 // Optimized Hash
 // We take (borrow) a join method from a regular array ([].join) and use [].join.call to run it in the context of our arguments

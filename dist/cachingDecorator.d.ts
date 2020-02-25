@@ -1,5 +1,5 @@
-declare function cache(fn: {
+declare const cache: (fn: {
     (...nums: number[]): number;
     call?: any;
-}): () => any;
+}) => () => any;
 export = cache;

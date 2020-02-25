@@ -16,7 +16,7 @@ const worker = {
         return sum;
     }
 };
-function cache(fn) {
+const cache = (fn) => {
     let cache = new Map();
     return function () {
         let key = optimizedHash(arguments);
@@ -27,7 +27,7 @@ function cache(fn) {
         cache.set(key, result); // and cache the result
         return result;
     };
-}
+};
 // Optimized Hash
 // We take (borrow) a join method from a regular array ([].join) and use [].join.call to run it in the context of our arguments
 const optimizedHash = (args) => [].join.call(args);
