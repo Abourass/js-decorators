@@ -1,7 +1,7 @@
 const saySomething = (x: any) => console.log(x);
 
 const delay = (fn: { (x: any): void; (x: any): void; apply?: any; }, ms: number) => {
-  return function(msg: string){
+  return function(args: any){
     setTimeout(() => fn.apply(this, arguments), ms)
   }
 };

@@ -1,7 +1,7 @@
 "use strict";
 const saySomething = (x) => console.log(x);
 const delay = (fn, ms) => {
-    return function (msg) {
+    return function (args) {
         setTimeout(() => fn.apply(this, arguments), ms);
     };
 };
